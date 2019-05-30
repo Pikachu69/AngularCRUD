@@ -21,6 +21,7 @@ isLoadingResults = false;
   ngOnInit() {
     this.getProduct(this.route.snapshot.params['_id']);
     this.productForm = this.formBuilder.group({
+      
       'prod_name' : [null, Validators.required],
       'prod_desc' : [null, Validators.required],
       'prod_price' : [null, Validators.required]
@@ -29,6 +30,7 @@ isLoadingResults = false;
 
   getProduct(id) {
     this.api.getProduct(id).subscribe(data => {
+      this._id = data._id;
       this.productForm.setValue({
         prod_name: data.prod_name,
         prod_desc: data.prod_desc,

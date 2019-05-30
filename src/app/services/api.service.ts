@@ -8,7 +8,7 @@ const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
-const apiURL = "http://localhost:3000/api/v1/products/";
+const apiURL = "http://localhost:3000/api/v1/products";
 
 @Injectable({
   providedIn: 'root'
@@ -53,6 +53,7 @@ export class ApiService {
   
   updateProduct (_id, product): Observable<any> {
     const url = `${apiURL}/${_id}`;
+    console.log(""+_id);
     return this.http.put(url, product, httpOptions).pipe(
       tap(_ => console.log(`updated product id=${_id}`)),
       catchError(this.handleError<any>('updateProduct'))
